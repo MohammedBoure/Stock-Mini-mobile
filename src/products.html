@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#007aff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- The title will be translated -->
+  <title data-i18n-key="products_page_title">Product Manager</title>
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+   <script src="js/script.js"></script>
+  <link rel="manifest" href="./manifest.json">
+  
+  <!-- Link to your specific page CSS and the shared CSS for anti-flicker -->
+  <link rel="stylesheet" href="./css/shared.css" />
+  <link rel="stylesheet" href="./css/products.css" />
+  
+  <!--
+    NOTE: The inline role-checking script has been removed.
+    This logic is now handled more robustly inside js/main.js
+  -->
+
+</head>
+
+<!-- Add the 'loading-translations' class to prevent FOUT -->
+<body class="loading-translations">
+
+  <!-- Full-width Navigation Bar -->
+  <nav class="main-nav">
+    <div class="nav-links">
+      <a href="./orders.html" class="nav-link">🛒<span class="nav-text" data-i18n-key="nav_orders">Orders</span></a>
+      <a href="./products.html" class="nav-link active">📦<span class="nav-text" data-i18n-key="nav_products">Products</span></a>
+      <a href="./borrowers.html" class="nav-link">👥<span class="nav-text" data-i18n-key="nav_borrowers">Borrowers</span></a>
+      <a href="./statistics.html" class="nav-link">📊<span class="nav-text" data-i18n-key="nav_statistics">Statistics</span></a>
+      <a href="./import_export.html" class="nav-link">🔄<span class="nav-text" data-i18n-key="nav_import_export">Import/Export</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+        <h2 data-i18n-key="header_product_manager">Product Manager</h2>
+    </header>
+    
+    <div class="actions-container">
+      <input type="text" id="searchInput" data-i18n-key="placeholder_search" placeholder="🔍 Search products..." />
+      <div class="action-buttons">
+        <button id="scanModeBtn">📠<span class="button-text" data-i18n-key="btn_scan">Scan</span></button>
+        <button id="addProductBtn">➕<span class="button-text" data-i18n-key="btn_add">Add</span></button>
+        <button id="sortByPriceBtn">↕️<span class="button-text" data-i18n-key="btn_price">Price</span></button>
+        <button id="sortByStockBtn">⚠️<span class="button-text" data-i18n-key="btn_low_stock">Low Stock</span></button>
+        <button id="sortByNameBtn">🔤<span class="button-text" data-i18n-key="btn_name">Name</span></button>
+        <button id="productStatsBtn">📊<span class="button-text" data-i18n-key="btn_stats">Stats</span></button>
+      </div>
+    </div>
+
+    <!-- This container will show feedback when scan mode is active -->
+    <div id="scanner-feedback" class="scanner-feedback-container hidden"></div>
+
+    <!-- Product Table Container -->
+    <div id="productContainer">
+      <!-- The product table will be injected here by JS -->
+    </div>
+
+    <!-- Pagination Container needs to be added to the HTML -->
+    <div id="pagination-container"></div>
+
+  </main>
+
+  <!-- Overlay Modal (for Add/Update Product) -->
+  <div id="productModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2 id="modalTitle" data-i18n-key="modal_title_add">Add Product</h2>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- External Libraries & Main Application Logic -->
+  <script src="./libs/sql-wasm.js"></script>
+  <script type="module" src="./js/main.js"></script>
+  
+</body>
+</html>

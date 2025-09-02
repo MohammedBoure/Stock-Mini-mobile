@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3;url=orders.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <title data-i18n-key="redirecting_title">Redirecting...</title>
+      <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+  <!-- Link to the PWA manifest -->
+    <meta name="theme-color" content="#651394">
+    <script src="/js/script.js"></script>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./css/shared.css">
+    
+    <style>
+        /* The essential anti-flicker rule */
+        body.loading-translations {
+          opacity: 0;
+          transition: opacity 0.3s ease-in;
+        }
+
+        /* --- THEME UPDATE: Matches the main application's purple theme --- */
+        body {
+            /* This is the same dark purple gradient from borrowers.css and orders.css */
+            background: linear-gradient(135deg, #651394 0%, #4d0f70 100%);
+            /* Use a light text color for contrast against the dark background */
+            color: #f0f0f0; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            /* A clean, bright white for the main title */
+            color: #ffffff; 
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85); /* Slightly off-white for paragraphs */
+        }
+
+        .loader {
+            margin: 40px auto;
+            /* A semi-transparent white for the loader's track */
+            border: 5px solid rgba(255, 255, 255, 0.2); 
+            /* A solid, bright white for the spinning part to make it pop */
+            border-top: 5px solid #ffffff; 
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+
+        a {
+            /* A vibrant pink that matches the active nav-link color */
+            color: #ff8e8e; 
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            /* Make the link brighter on hover */
+            color: #ffffff; 
+            text-decoration: underline;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<!-- This class links to the embedded style above to hide the page until translated -->
+<body class="loading-translations">
+
+    <h1 data-i18n-key="welcome_title">Welcome to Local Ledger</h1>
+    <p data-i18n-key="redirect_message">You will be redirected to the orders page in 3 seconds...</p>
+    
+    <div class="loader"></div>
+
+    <p>
+        <span data-i18n-key="manual_redirect_prefix">If you are not redirected automatically,</span>
+        <a href="orders.html" data-i18n-key="manual_redirect_link">click here</a>.
+    </p>
+
+    <!-- External Libraries & The New Centralized Main Application Script -->
+    <script src="./libs/sql-wasm.js"></script>
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>

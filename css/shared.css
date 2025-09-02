@@ -1,8 +1,0 @@
-/*
- * This class prevents the "Flash of Untranslated Content" (FOUT).
- * It keeps the body invisible until our language script is finished.
- */
-body.loading-translations {
-  opacity: 0;
-  transition: opacity 0.2s ease-in; /* This makes the reveal a smooth fade-in */
-}
