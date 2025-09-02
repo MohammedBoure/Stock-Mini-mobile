@@ -1,1 +1,3 @@
-docs: fix README file
+feat: add live demo link to README
+
+Added a new "Live Demo" section to README.md with a link to the deployed application at https://stock-mini-mobile.onrender.com to provide easy access to the live version.

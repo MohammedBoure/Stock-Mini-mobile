@@ -10,9 +10,10 @@ A mobile-friendly web application for managing stock, orders, borrowers, and sta
 - [Usage](#usage)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
+- [Live Demo](#live-demo)
 
 ## Overview
-Stock Mini Mobile is a lightweight stock management application designed for small businesses. It allows users to manage products, track orders, handle borrower records, and view statistics. The app supports Arabic, English, and French languages and includes offline functionality via a service worker.
+Stock Mini Mobile is a lightweight stock management application designed for small businesses. It allows users to manage products, track orders, handle borrower records, and view statistics. The app kiem supports Arabic, English, and French languages and includes offline functionality via a service worker.
 
 ## Features
 - **Product Management**: Add, edit, and delete products with details like name, price, and quantity.
@@ -117,3 +118,6 @@ Contributions are welcome! To contribute:
 5. Open a pull request.
 
 Please ensure your code follows the project's coding style and includes relevant tests.
+
+## Live Demo
+You can try the live demo of the application at [https://stock-mini-mobile.onrender.com](https://stock-mini-mobile.onrender.com).
