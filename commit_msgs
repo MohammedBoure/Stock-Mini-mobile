@@ -2,3 +2,6 @@
 -----
 
 fix(pwa): correct offline support, relative paths handling, and service worker integration
+-----
+
+chore: add .gitignore file
