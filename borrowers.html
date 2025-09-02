@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#007aff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n-key="borrowers_page_title">👥 Borrowers</title>
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+  <!-- Link to the PWA manifest -->
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="../css/shared.css">
+  <link rel="stylesheet" href="../css/borrowers.css">
+
+  <!--
+    NOTE: The inline role-checking script has been removed.
+    This logic is now handled more robustly inside js/main.js
+  -->
+</head>
+
+<body class="loading-translations">
+
+  <!-- Full-width Navigation Bar -->
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="nav-links">
+      <a href="./orders.html" class="nav-link">🛒<span class="nav-text" data-i18n-key="nav_orders">Orders</span></a>
+      <a href="./products.html" class="nav-link">📦<span class="nav-text" data-i18n-key="nav_products">Products</span></a>
+      <a href="./borrowers.html" class="nav-link active">👥<span class="nav-text" data-i18n-key="nav_borrowers">Borrowers</span></a>
+      <a href="./statistics.html" class="nav-link">📊<span class="nav-text" data-i18n-key="nav_statistics">Statistics</span></a>
+      <a href="./import_export.html" class="nav-link">🔄<span class="nav-text" data-i18n-key="nav_import_export">Import/Export</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <h1 data-i18n-key="borrowers_main_title">Borrower Manager</h1>
+    </header>
+
+    <div class="actions-container">
+      <input type="text" id="searchInput" data-i18n-key="borrowers_search_placeholder" placeholder="🔍 Search borrowers...">
+     
+      <div class="action-buttons">
+          <button id="addBorrowerBtn">➕<span class="button-text" data-i18n-key="borrowers_add_custom">Add Borrower</span></button>
+        <button id="sortByDateBtn">📅<span class="button-text" data-i18n-key="borrowers_sort_date">Date</span></button>
+        <button id="sortByAmountBtn">💰<span class="button-text" data-i18n-key="borrowers_sort_amount">Amount</span></button>
+      </div>
+    </div>
+
+    <div id="borrowersContainer" role="region" aria-live="polite">
+      <!-- The borrowers cards will be injected here by JS -->
+    </div>
+
+    <div id="pagination-container" aria-label="Pagination controls"></div>
+  </main>
+ 
+  <!-- Orders Overlay Modal -->
+  <div id="ordersOverlay" class="modal hidden" role="dialog" aria-labelledby="ordersOverlayTitle">
+    <div class="modal-content">
+      <button id="closeOrdersOverlay" class="close" aria-label="Close modal">&times;</button>
+      <h2 id="ordersOverlayTitle">Order History</h2>
+      <div id="ordersOverlayBody">
+        <!-- Orders will be injected here by JavaScript -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add/Edit Borrower Modal -->
+  <div id="borrowerModal" class="modal hidden" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button id="closeModal" class="close" aria-label="Close modal">&times;</button>
+      <h2 id="modalTitle" data-i18n-key="borrowers_modal_title_edit">Edit Borrower Debt</h2>
+      <form id="borrowerForm" aria-describedby="modalBody">
+        <div id="modalBody">
+          <!-- Form fields will be injected here by JS -->
+        </div>
+      </form>
+    </div>
+  </div>
+ 
+  <!-- External Libraries & Main Application Logic -->
+  <script src="./libs/sql-wasm.js"></script>
+  <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>

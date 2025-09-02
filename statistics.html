@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#007aff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- The title will be translated -->
+  <title data-i18n-key="statistics_page_title">📊 Store Dashboard</title>
+  
+  <script src="./libs/chart.umd.min.js"></script>
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+  <!-- Link to the PWA manifest -->
+  
+  <link rel="manifest" href="./manifest.json">
+  
+  <!-- Link to shared CSS for anti-flicker and page-specific CSS -->
+  <link rel="stylesheet" href="./css/shared.css">
+  <link rel="stylesheet" href="./css/statistics.css">
+  
+  <!--
+    NOTE: The inline role-checking script has been removed.
+    This logic is now handled more robustly inside js/main.js
+  -->
+</head>
+
+<!-- Add the 'loading-translations' class to prevent FOUT -->
+<body class="loading-translations">
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="nav-links">
+      <a href="./orders.html" class="nav-link" aria-label="View Orders">
+        🛒<span class="nav-text" data-i18n-key="nav_orders">Orders</span>
+      </a>
+      <a href="./products.html" class="nav-link" aria-label="View Products">
+        📦<span class="nav-text" data-i18n-key="nav_products">Products</span>
+      </a>
+      <a href="./borrowers.html" class="nav-link" aria-label="View Borrowers">
+        👥<span class="nav-text" data-i18n-key="nav_borrowers">Borrowers</span>
+      </a>
+      <a href="./statistics.html" class="nav-link active" aria-label="View Statistics" aria-current="page">
+        📊<span class="nav-text" data-i18n-key="nav_statistics">Statistics</span>
+      </a>
+      <a href="./import_export.html" class="nav-link" aria-label="Import/Export Data">
+        🔄<span class="nav-text" data-i18n-key="nav_import_export">Import/Export</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-header">
+      <h1 data-i18n-key="header_statistics">Statistics</h1>
+    </header>
+
+    <!-- KPI cards will be dynamically generated, JS should use translation keys -->
+    <div class="dashboard-grid" id="kpi-cards"></div>
+
+    <div class="dashboard-grid" style="margin-top: 2rem;">
+      <div class="stat-card chart-card">
+        <div class="chart-header">
+          <h3 data-i18n-key="chart_sales_profit_title">Sales & Profit Over Time</h3>
+          <div class="controls">
+            <div class="duration-controls" id="salesChartDuration">
+              <button data-duration="7" class="active" data-i18n-key="duration_7_days">Last 7 Days</button>
+              <button data-duration="30" data-i18n-key="duration_30_days">Last 30 Days</button>
+              <button data-duration="90" data-i18n-key="duration_90_days">Last 90 Days</button>
+              <button data-duration="365" data-i18n-key="duration_365_days">Last 365 Days</button>
+              <button data-duration="all" data-i18n-key="duration_all_time">All Time</button>
+            </div>
+            <div class="custom-range" title="Custom range">
+              <label for="customStart" class="visually-hidden" data-i18n-key="label_start_date">Start Date</label>
+              <input type="date" id="customStart" aria-describedby="custom-start-hint" />
+              <span data-i18n-key="text_to">to</span>
+              <label for="customEnd" class="visually-hidden" data-i18n-key="label_end_date">End Date</label>
+              <input type="date" id="customEnd" aria-describedby="custom-end-hint" />
+              <button id="applyCustom" aria-label="Apply Custom Date Range">✅<span class="button-text" data-i18n-key="btn_apply">Apply</span></button>
+            </div>
+            <label for="accuracySelect" class="visually-hidden" data-i18n-key="label_accuracy">Label Accuracy</label>
+            <select id="accuracySelect" class="accuracy-select" title="Label accuracy" aria-describedby="accuracy-hint">
+              <option value="auto" data-i18n-key="accuracy_auto">Auto</option>
+              <option value="daily" data-i18n-key="accuracy_daily">Daily</option>
+              <option value="3-day" data-i18n-key="accuracy_3_day">3-Day</option>
+              <option value="weekly" data-i18n-key="accuracy_weekly">Weekly</option>
+              <option value="monthly" data-i18n-key="accuracy_monthly">Monthly</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="salesProfitChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid" style="margin-top: 2rem;">
+      <div class="stat-card">
+        <h3 data-i18n-key="chart_profit_margin_title">Profit Margin</h3>
+        <div class="donut-chart-wrapper">
+          <canvas id="profitMarginChart"></canvas>
+        </div>
+      </div>
+      <div class="stat-card">
+        <h3 data-i18n-key="chart_top_products_title">Top 5 Best-Selling Products</h3>
+        <div class="chart-wrapper">
+          <canvas id="topProductsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- External Libraries & Main Application Logic -->
+  <script src="./libs/sql-wasm.js"></script>
+  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="../ui/statistics_ui.js"></script>
+
+</body>
+</html>
