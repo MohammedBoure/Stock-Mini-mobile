@@ -2,16 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="3;url=orders.html">
+    <meta http-equiv="refresh" content="4;url=orders.html"> <!-- Increased to 4s for better UX -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     <title data-i18n-key="redirecting_title">Redirecting...</title>
-      <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
-<link rel="apple-touch-icon" href="./icons/icon-192x192.png">
-  <!-- Link to the PWA manifest -->
+    
+    <!-- PWA & Favicon Links -->
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
     <meta name="theme-color" content="#651394">
-    <script src="/js/script.js"></script>
+    <!--
+    <script src="js/script.js"></script>
     <link rel="manifest" href="./manifest.json">
+    -->
+    
+    <!-- External Libraries: Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="./css/shared.css">
     
     <style>
@@ -21,82 +32,144 @@
           transition: opacity 0.3s ease-in;
         }
 
-        /* --- THEME UPDATE: Matches the main application's purple theme --- */
+        /* --- NEW MODERN THEME --- */
+        :root {
+            --primary-purple: #651394;
+            --dark-purple: #4d0f70;
+            --accent-pink: #ff8e8e;
+            --text-light: #f0f0f0;
+            --text-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
         body {
-            /* This is the same dark purple gradient from borrowers.css and orders.css */
-            background: linear-gradient(135deg, #651394 0%, #4d0f70 100%);
-            /* Use a light text color for contrast against the dark background */
-            color: #f0f0f0; 
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            text-align: center;
-            padding: 50px;
+            font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: var(--text-light);
             margin: 0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            overflow: hidden; /* Prevents scrollbars during animation */
+        }
+
+        .redirect-container {
+            background: rgba(23, 15, 30, 0.4); /* Glassmorphism background */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .app-icon {
+            font-size: 3.5rem;
+            color: var(--accent-pink);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 142, 142, 0.5);
         }
 
         h1 {
-            /* A clean, bright white for the main title */
-            color: #ffffff; 
-            font-size: 2.8em;
+            color: var(--text-white);
+            font-size: 2.5em;
             font-weight: 700;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            margin: 0 0 15px 0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         p {
-            font-size: 1.2em;
+            font-size: 1.1em;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.85); /* Slightly off-white for paragraphs */
+            color: var(--text-muted);
+            margin-bottom: 30px;
         }
 
         .loader {
-            margin: 40px auto;
-            /* A semi-transparent white for the loader's track */
-            border: 5px solid rgba(255, 255, 255, 0.2); 
-            /* A solid, bright white for the spinning part to make it pop */
-            border-top: 5px solid #ffffff; 
+            margin: 30px auto;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid var(--text-white);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            width: 45px;
+            height: 45px;
+            animation: spin 1s linear infinite;
         }
 
-        a {
-            /* A vibrant pink that matches the active nav-link color */
-            color: #ff8e8e; 
-            font-weight: bold;
+        .redirect-info {
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
+        .redirect-info a {
+            color: var(--accent-pink);
+            font-weight: 600;
             text-decoration: none;
-            transition: color 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            border-bottom: 1px solid transparent;
         }
 
-        a:hover {
-            /* Make the link brighter on hover */
-            color: #ffffff; 
-            text-decoration: underline;
+        .redirect-info a:hover {
+            color: var(--text-white);
+            text-decoration: none;
+            border-bottom-color: var(--accent-pink);
         }
-
+        
+        /* Animation Keyframes */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            .redirect-container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .app-icon {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 
-<!-- This class links to the embedded style above to hide the page until translated -->
 <body class="loading-translations">
 
-    <h1 data-i18n-key="welcome_title">Welcome to Local Ledger</h1>
-    <p data-i18n-key="redirect_message">You will be redirected to the orders page in 3 seconds...</p>
-    
-    <div class="loader"></div>
+    <main class="redirect-container">
+        <div class="app-icon">
+            <i class="fas fa-book-open"></i>
+        </div>
 
-    <p>
-        <span data-i18n-key="manual_redirect_prefix">If you are not redirected automatically,</span>
-        <a href="orders.html" data-i18n-key="manual_redirect_link">click here</a>.
-    </p>
+        <h1 data-i18n-key="welcome_title">Welcome to Local Ledger</h1>
+        <p data-i18n-key="redirect_message">You will be redirected to the orders page shortly...</p>
+        
+        <div class="loader"></div>
+
+        <p class="redirect-info">
+            <span data-i18n-key="manual_redirect_prefix">If you are not redirected automatically,</span>
+            <a href="orders.html" data-i18n-key="manual_redirect_link">click here</a>.
+        </p>
+    </main>
 
     <!-- External Libraries & The New Centralized Main Application Script -->
     <script src="./libs/sql-wasm.js"></script>

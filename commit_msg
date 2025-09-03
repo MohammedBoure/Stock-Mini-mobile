@@ -1,3 +1,5 @@
-feat: add live demo link to README
+feat(ui): improve theme to lighter version and refactor code structure
 
-Added a new "Live Demo" section to README.md with a link to the deployed application at https://stock-mini-mobile.onrender.com to provide easy access to the live version.
+- Updated UI theme to a lighter, cleaner style
+- Refactored code by splitting into smaller, maintainable modules
+- Improved scalability and reusability
